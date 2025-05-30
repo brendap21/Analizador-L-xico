@@ -1,6 +1,6 @@
-# ANALIZADOR LEXICO
+# ANALIZADOR LÉXICO
 
-## El presente analizador Léxico Acepta el siguiente tipo de entradas: 
+## El presente analizador Léxico acepta el siguiente tipo de entradas: 
 
 ### Definición de conjuntos:
   #### Set Nom := {a,b,cde,1,3xy};
