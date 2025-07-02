@@ -13,8 +13,9 @@
 ### Operaciones entre conjuntos:
   #### Union Nom,L;
   #### Nom interseccion L;
-  #### También acepta la variación con Interseccion (con mayúscula)
+  #### También acepta la variación con Interseccion (con mayúscula) o Intersection en inglés
   #### Interseccion Nom,L;
+  #### Intersection Nom,L;
 
 ### Crear conjuntos nuevos con resultado de operación:
   #### SetUnion X,Nom,L;
@@ -51,6 +52,9 @@
 1. Ejecuta `flex conjuntos.l` para generar `lex.yy.c`.
 2. Ejecuta `bison -d parser.y` para generar `parser.tab.c` y `parser.tab.h`.
 3. Compila todo con `g++ lex.yy.c parser.tab.c -o analizador -lfl`.
+   Si el ejecutable `analizador` existente produce errores inesperados,
+   vuelve a compilarlo siguiendo los pasos anteriores para asegurarte de
+   que esté sincronizado con los archivos fuente.
 
 ### Luego escribe una entrada en el programa, por ejemplo: 
 
