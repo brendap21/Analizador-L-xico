@@ -1,49 +1,38 @@
+%option noyywrap
+%option nounput noinput
+
 %{
-#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <cstring>
+#include "parser.tab.h"
 %}
 
-/* Expresiones Regulares */
-DIGITO      [0-9]
-LETRA       [a-zA-Z]
-ID          {LETRA}({LETRA}|{DIGITO})*
-ELEMENTO    {DIGITO}+|{LETRA}+|{DIGITO}{LETRA}+
-
 %%
 
-SetUnion           { printf("Union: %s\n", yytext); }        /* SetUnion X,Nom,L; */
-ShowsSets          { printf("Show: %s\n", yytext); }         /* ShowsSets */
-ClearSet           { printf("Clear: %s\n", yytext); }        /* ClearSet Nom; */
-PrintSetNom        { printf("PrintSetNom: %s\n", yytext); }  /* PrintSetNom */
-PrintSeA           { printf("PrintSeA: %s\n", yytext); }     /* PrintSeA */
-interseccion|Interseccion { printf("Interseccion: %s\n", yytext); }  /* Interseccion */
-Union              { printf("Union: %s\n", yytext); }        /* Union Nom,L; */
-Sets               { printf("Sets: %s\n", yytext); }         /* Sets */
-Set                { printf("Definir set: %s\n", yytext); }  /* Set Nom := {a,b,c}; */
-Delete             { printf("Delete: %s\n", yytext); }       /* Delete Nom; */
+SetUnion                    { return BIN; }
+ClearSet                    { return SINGLE; }
+Delete                      { return SINGLE; }
+Union                       { return BIN; }
+interseccion|Interseccion   { return BIN; }
+ShowsSets                   { return NONE; }
+ShowSet                     { return SINGLE; }
+Sets                        { return NONE; }
+Set                         { return SET; }
 
-">>"               { printf(">>: %s\n", yytext); }           /* símbolo de consola */
-":="               { printf("Igual: %s\n", yytext); }        /* asignación */
-"{"                { printf("Abre Conjunto: %s\n", yytext); }
-"}"                { printf("Cierra Conjunto: %s\n", yytext); }
-";"                { printf("Punto y Coma: %s\n", yytext); }
-","                { printf("Comma: %s\n", yytext); }
+":="                        { return IGUAL; }
+"{"                         { return ABRECONJUNTO; }
+"}"                         { return CIERRACONJUNTO; }
+";"                         { return PUNTOYCOMA; }
+","                         { return COMMA; }
 
-{ID}               { printf("Variable: %s\n", yytext); }     /* Nombres de conjunto o variable */
-{ELEMENTO}         { printf("Elemento: %s\n", yytext); }     /* Elementos como 3xy, abc, 123 */
+[a-zA-Z][a-zA-Z0-9]*        {
+                               yylval.str = strdup(yytext);
+                               return VARIABLE;
+                            }
 
-"//".*             {/* Ignora comentarios estilo línea */}
-[ \t\n]+           {/* Ignora espacios, tabs, saltos de línea */}
-
-.                  { printf("Unrecognized: %s\n", yytext); } /* Todo lo no reconocido */
+[ \t\r\n]+                  ;
+"//".*                      ;
+.                           { std::cerr << "Unrecognized: " << yytext << "\n"; return 0; }
 
 %%
-
-int yywrap() {
-    return 1;
-}
-
-int main() {
-    printf("Por favor, ingresa el código:\n\n");
-    yylex();
-    return 0;
-}
