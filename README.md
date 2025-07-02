@@ -8,6 +8,10 @@
 
 ### Mostrar conjuntos:
   #### Sets;
+<<<<<<< HEAD
+=======
+  #### ShowsSets;
+>>>>>>> 605012f (Correction Compilation Errors)
   #### ShowSets; (también se acepta ShowsSets)
 
 ### Operaciones entre conjuntos:
@@ -57,6 +61,10 @@
 #### Set Nom := {a,b,3xy};
 #### Set L := {a,b,c};
 #### Sets;
+<<<<<<< HEAD
+=======
+#### ShowsSets;
+>>>>>>> 605012f (Correction Compilation Errors)
 #### ShowSets;
 #### (también se acepta ShowsSets)
 #### Union Nom,L;
