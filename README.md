@@ -8,7 +8,7 @@
 
 ### Mostrar conjuntos:
   #### Sets;
-  #### ShowsSets;
+  #### ShowSets; (también se acepta ShowsSets)
 
 ### Operaciones entre conjuntos:
   #### Union Nom,L;
@@ -47,18 +47,18 @@
   #### cde  
   #### 3xy  
 
-### PARA COMPILAR EL PROGRAMA: 
-#### Abre MSYS2 MINGW64 y abre la carpeta donde se ubica el archivo conjuntos.l 
-#### Escribe: gcc lex.yy.c -o conjuntos.exe
-#### Escribe: flex conjuntos.l
-#### Escribe: ./conjuntos.exe
+### PARA COMPILAR EL PROGRAMA:
+1. Ejecuta `bison -d parser.y` para generar `parser.tab.c` y `parser.tab.h`.
+2. Ejecuta `flex conjuntos.l` para generar `lex.yy.c`.
+3. Compila todo con `g++ lex.yy.c parser.tab.c -o analizador -lfl`.
 
 ### Luego escribe una entrada en el programa, por ejemplo: 
 
 #### Set Nom := {a,b,3xy};
 #### Set L := {a,b,c};
 #### Sets;
-#### ShowsSets;
+#### ShowSets;
+#### (también se acepta ShowsSets)
 #### Union Nom,L;
 #### Nom interseccion L;
 #### SetUnion X,Nom,L;
