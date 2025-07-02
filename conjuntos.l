@@ -15,7 +15,7 @@ ClearSet                    { return SINGLE; }
 Delete                      { return SINGLE; }
 Union                       { return BIN; }
 interseccion|Interseccion   { return BIN; }
-ShowsSets                   { return NONE; }
+ShowSets|ShowsSets          { return NONE; }
 ShowSet                     { return SINGLE; }
 Sets                        { return NONE; }
 Set                         { return SET; }
@@ -26,10 +26,10 @@ Set                         { return SET; }
 ";"                         { return PUNTOYCOMA; }
 ","                         { return COMMA; }
 
-[a-zA-Z][a-zA-Z0-9]*        {
+[a-zA-Z0-9]+                 {
                                yylval.str = strdup(yytext);
                                return VARIABLE;
-                            }
+                             }
 
 [ \t\r\n]+                  ;
 "//".*                      ;
