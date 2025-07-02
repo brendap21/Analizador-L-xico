@@ -1,73 +1,88 @@
-# ANALIZADOR LÉXICO
+# Analizador Léxico
 
-## El presente analizador Léxico acepta el siguiente tipo de entradas: 
+## Entradas aceptadas
 
-### Definición de conjuntos:
-  #### Set Nom := {a,b,cde,1,3xy};
-  #### Set L := {a,b,c};
+### Definición de conjuntos
+```text
+Set Nom := {a,b,cde,1,3xy};
+Set L := {a,b,c};
+```
 
-### Mostrar conjuntos:
-  #### Sets;
-  #### ShowSets; (también se acepta ShowsSets)
+### Mostrar conjuntos
+```text
+Sets;
+ShowSets;    (también se acepta ShowsSets)
+```
 
-### Operaciones entre conjuntos:
-  #### Union Nom,L;
-  #### Nom interseccion L;
-  #### También acepta la variación con Interseccion (con mayúscula) o Intersection en inglés
-  #### Interseccion Nom,L;
-  #### Intersection Nom,L;
+### Operaciones entre conjuntos
+```text
+Union Nom,L;
+Nom interseccion L;
+Interseccion Nom,L;   (también Intersectión en inglés)
+Intersection Nom,L;
+```
 
-### Crear conjuntos nuevos con resultado de operación:
-  #### SetUnion X,Nom,L;
-  #### SetInterseccion Y,Nom,L;
-  
-### Vaciar o borrar conjuntos:
-  #### ClearSet Nom;
-  #### Delete Nom;
-### Imprimir conjuntos específicos:
-  #### PrintSetNom;
-  #### PrintSeA;
+### Crear conjuntos nuevos con resultado de operación
+```text
+SetUnion X,Nom,L;
+SetInterseccion Y,Nom,L;
+```
 
-### Símbolos:
-  ### También reconoce por separado los símbolos que pueden estar en las instrucciones:
-  #### >>
-  #### :=
-  #### {, }
-  #### ,
-  #### ;
-  
-### Variables / Identificadores como:
-  #### Nom  
-  #### L  
-  #### X  
-  #### Y
-  
-### Elementos de conjuntos:
-  #### a  
-  #### b  
-  #### cde  
-  #### 3xy  
+### Vaciar o borrar conjuntos
+```text
+ClearSet Nom;
+Delete Nom;
+```
 
-### PARA COMPILAR EL PROGRAMA:
+### Imprimir conjuntos específicos
+```text
+PrintSetNom;
+PrintSeA;
+```
+
+### Símbolos reconocidos
+```text
+>>
+:=
+{ }
+,
+;
+```
+
+### Variables / Identificadores
+```text
+Nom
+L
+X
+Y
+```
+
+### Elementos de conjuntos
+```text
+a
+b
+cde
+3xy
+```
+
+## Compilación
 1. Ejecuta `flex conjuntos.l` para generar `lex.yy.c`.
 2. Ejecuta `bison -d parser.y` para generar `parser.tab.c` y `parser.tab.h`.
 3. Compila todo con `g++ lex.yy.c parser.tab.c -o analizador -lfl`.
-   Si el ejecutable `analizador` existente produce errores inesperados,
-   vuelve a compilarlo siguiendo los pasos anteriores para asegurarte de
-   que esté sincronizado con los archivos fuente.
+   Si el ejecutable `analizador` existente produce errores inesperados, vuelve a compilarlo siguiendo los pasos anteriores para asegurarte de que esté sincronizado con los archivos fuente.
 
-### Luego escribe una entrada en el programa, por ejemplo: 
-
-#### Set Nom := {a,b,3xy};
-#### Set L := {a,b,c};
-#### Sets;
-#### ShowSets;
-#### (también se acepta ShowsSets)
-#### Union Nom,L;
-#### Nom interseccion L;
-#### SetUnion X,Nom,L;
-#### SetInterseccion Y,Nom,L;
-#### ClearSet Nom;
-#### PrintSetNom;
-#### Delete Nom;
-#### PrintSeA;
+## Ejemplo de ejecución
+```text
+Set Nom := {a,b,3xy};
+Set L := {a,b,c};
+Sets;
+ShowSets;    (también ShowsSets)
+Union Nom,L;
+Nom interseccion L;
+SetUnion X,Nom,L;
+SetInterseccion Y,Nom,L;
+ClearSet Nom;
+PrintSetNom;
+Delete Nom;
+PrintSeA;
+```
