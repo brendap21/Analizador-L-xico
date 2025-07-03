@@ -807,7 +807,7 @@ YY_RULE_SETUP
 case 9:
 YY_RULE_SETUP
 #line 19 "conjuntos.l"
-{ PUSH_TOKEN(yytext); return CMD_SET; }
+{ return CMD_SET; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP

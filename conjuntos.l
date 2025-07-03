@@ -16,7 +16,7 @@
 "ShowSets"      { PUSH_TOKEN(yytext); return CMD_NONE; }
 "ShowSet"       { PUSH_TOKEN(yytext); return CMD_MONO; }
 "Sets"          { PUSH_TOKEN(yytext); return CMD_NONE; }
-"Set"           { PUSH_TOKEN(yytext); return CMD_SET; }
+"Set"           { return CMD_SET; }
 ":="            { return ASSIGN; }
 ";"             { return SMC; }
 "{"             { return OPENKEY; }
