@@ -11,6 +11,7 @@ private:
     std::string nombre_;
     std::set<std::string> elems_;
 public:
+    Conjunto() = default;
     explicit Conjunto(const std::string& nombre);
     void agregar(const std::string& e);
     void vaciar();

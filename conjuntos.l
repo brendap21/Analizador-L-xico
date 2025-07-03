@@ -22,12 +22,7 @@
 "}"             { return CLOSEKEY; }
 ","             { return COLON; }
 [a-zA-Z0-9]+    { PUSH_TOKEN(yytext); return VAR; }
-<<<<<<< HEAD
 [ \t\n]+        ;  /* ignora espacio */
 .               { std::cerr<<"Unknown: "<<yytext<<"\n"; }
-=======
-[ \t\n]+        ;  /* Ignora espacios y tabulaciones */
-.               { std::cerr << "Unknown token: " << yytext << std::endl; }
->>>>>>> 2ea9472 (Calculator compilation files added)
 %%
 
