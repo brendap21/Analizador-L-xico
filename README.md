@@ -1,6 +1,6 @@
 # CalculadoraSemantica
 
-Módulo completo para crear y operar con conjuntos:
+## Módulo completo para crear y operar con conjuntos:
 
 Set A := {a,b,c};
 Set B := {b,c,d};
