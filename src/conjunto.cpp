@@ -1,13 +1,14 @@
 #include "conjunto.h"
 
+// Constructor que fija el nombre
 Conjunto::Conjunto(const std::string& nombre) : nombre_(nombre) {}
 
 void Conjunto::agregar(const std::string& e) {
-    elems_.insert(e);
+    elems_.insert(e);   // Inserta en el set (evita duplicados)
 }
 
 void Conjunto::vaciar() {
-    elems_.clear();
+    elems_.clear();     // Borra todos los elementos
 }
 
 void Conjunto::mostrar() const {
@@ -21,9 +22,14 @@ void Conjunto::mostrar() const {
     std::cout << "}" << std::endl;
 }
 
-std::string Conjunto::getNombre() const { return nombre_; }
-std::set<std::string> Conjunto::getElementos() const { return elems_; }
+std::string Conjunto::getNombre() const { 
+    return nombre_; 
+}
+std::set<std::string> Conjunto::getElementos() const { 
+    return elems_; 
+}
 
+// UNIÓN: copia A y luego añade todos los de B
 Conjunto Conjunto::Union(const Conjunto& A, const Conjunto& B, const std::string& nuevoNombre) {
     Conjunto r(nuevoNombre);
     r.elems_ = A.elems_;
@@ -31,6 +37,7 @@ Conjunto Conjunto::Union(const Conjunto& A, const Conjunto& B, const std::string
     return r;
 }
 
+// INTERSECCIÓN: añade solo los elementos de A que estén también en B
 Conjunto Conjunto::Interseccion(const Conjunto& A, const Conjunto& B, const std::string& nuevoNombre) {
     Conjunto r(nuevoNombre);
     for (auto const& e : A.elems_)
@@ -39,6 +46,7 @@ Conjunto Conjunto::Interseccion(const Conjunto& A, const Conjunto& B, const std:
     return r;
 }
 
+// CONCATENACIÓN: producto cartesiano de cadenas
 Conjunto Conjunto::Concat(const Conjunto& A, const Conjunto& B, const std::string& nuevoNombre) {
     Conjunto r(nuevoNombre);
     for (auto const& x : A.elems_)
@@ -46,4 +54,3 @@ Conjunto Conjunto::Concat(const Conjunto& A, const Conjunto& B, const std::strin
             r.elems_.insert(x + y);
     return r;
 }
-

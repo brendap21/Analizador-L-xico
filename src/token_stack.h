@@ -7,17 +7,21 @@
 // Pila simple para pasar lexemas del lexer al parser
 class TokenStack {
 private:
-    std::vector<std::string> stack_;
+    std::vector<std::string> stack_;  // almacena los textos de los tokens
+				      //  vector donde guardamos cada lexema (por ejemplo "Union", "Nom", "3xy").
+
 public:
-    // Inserta un token al tope
+    // empuja token al final del vector (tope de la pila).
     void push(const std::string& tok);
-    // Saca y retorna el token del tope (o "" si está vacía)
+
+    // si hay algo, saca y devuelve el último elemento (LIFO); si está vacía, devuelve "".
     std::string pop();
-    // Cuántos tokens hay en la pila
+
+    // Devuelve cuántos tokens hay actualmente en la pila,  útil para bucles que extraen varios tokens.
     std::size_t size() const;
 };
 
-// Instancia global accesible desde parser y lexer
+// declara que habrá una instancia global llamada gTokenStack usada tanto en el lexer como en el parser.
 extern TokenStack gTokenStack;
 
 #endif // TOKEN_STACK_H
