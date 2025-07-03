@@ -487,8 +487,8 @@ char *yytext;
 #include <string>
 #include <iostream>
 #define PUSH_TOKEN(x) gTokenStack.push(std::string(x))
-#line 490 "lex.yy.c"
 #line 491 "lex.yy.c"
+#line 492 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -705,9 +705,9 @@ YY_DECL
 		}
 
 	{
-#line 9 "conjuntos.l"
+#line 10 "conjuntos.l"
 
-#line 710 "lex.yy.c"
+#line 711 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -766,96 +766,96 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 10 "conjuntos.l"
+#line 11 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_BIN; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "conjuntos.l"
+#line 12 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_BIN; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 12 "conjuntos.l"
+#line 13 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_BIN; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "conjuntos.l"
+#line 14 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_MONO; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 14 "conjuntos.l"
+#line 15 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_MONO; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 15 "conjuntos.l"
+#line 16 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_NONE; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 16 "conjuntos.l"
+#line 17 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_MONO; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 17 "conjuntos.l"
+#line 18 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_NONE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 18 "conjuntos.l"
+#line 19 "conjuntos.l"
 { PUSH_TOKEN(yytext); return CMD_SET; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 19 "conjuntos.l"
+#line 20 "conjuntos.l"
 { return ASSIGN; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 20 "conjuntos.l"
+#line 21 "conjuntos.l"
 { return SMC; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 21 "conjuntos.l"
+#line 22 "conjuntos.l"
 { return OPENKEY; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 22 "conjuntos.l"
+#line 23 "conjuntos.l"
 { return CLOSEKEY; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 23 "conjuntos.l"
+#line 24 "conjuntos.l"
 { return COLON; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 24 "conjuntos.l"
+#line 25 "conjuntos.l"
 { PUSH_TOKEN(yytext); return VAR; }
 	YY_BREAK
 case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
-#line 25 "conjuntos.l"
+#line 26 "conjuntos.l"
 ;  /* ignora espacio */
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 26 "conjuntos.l"
+#line 27 "conjuntos.l"
 { std::cerr<<"Unknown: "<<yytext<<"\n"; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 27 "conjuntos.l"
+#line 28 "conjuntos.l"
 ECHO;
 	YY_BREAK
-#line 858 "lex.yy.c"
+#line 859 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1860,7 +1860,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 27 "conjuntos.l"
+#line 28 "conjuntos.l"
 
 
 
