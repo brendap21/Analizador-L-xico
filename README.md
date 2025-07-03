@@ -2,16 +2,20 @@
 
 Módulo completo para crear y operar con conjuntos:
 
-- **Set X := {a,b,c};**
-- **Sets;** / **ShowSets;**
-- **ShowSet X;**
-- **Union A, B;**
-- **Intersection A, B;**
-- **Concat A, B;**
-- **Set Y := A Union B;**
-- **Set Z := A Concat B;**
-- **Clear X;**
-- **Delete X;**
+Set A := {a,b,c};
+Set B := {b,c,d};
+Sets;
+ShowSets;
+Union A,B;
+Intersection A,B;
+Concat A,B;
+Set C := A Union B;
+ShowSet C;
+Clear A;
+ShowSet A;
+Delete B;
+ShowSet B;
+Sets;
 
 ### Estructura
 
