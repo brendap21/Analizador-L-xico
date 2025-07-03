@@ -3,6 +3,7 @@
 #include "parser.tab.h"
 #include "token_stack.h"
 #include <string>
+#include <iostream>
 #define PUSH_TOKEN(x) gTokenStack.push(std::string(x))
 %}
 

@@ -485,6 +485,7 @@ char *yytext;
 #include "parser.tab.h"
 #include "token_stack.h"
 #include <string>
+#include <iostream>
 #define PUSH_TOKEN(x) gTokenStack.push(std::string(x))
 #line 490 "lex.yy.c"
 #line 491 "lex.yy.c"
