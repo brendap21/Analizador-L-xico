@@ -122,10 +122,10 @@ enum yysymbol_kind_t
   YYSYMBOL_YYACCEPT = 13,                  /* $accept  */
   YYSYMBOL_program = 14,                   /* program  */
   YYSYMBOL_statement = 15,                 /* statement  */
-  YYSYMBOL_cmd_none_stmt = 16,             /* cmd_none_stmt  */
-  YYSYMBOL_cmd_mono_stmt = 17,             /* cmd_mono_stmt  */
-  YYSYMBOL_cmd_bin_stmt = 18,              /* cmd_bin_stmt  */
-  YYSYMBOL_set_declaration_stmt = 19,      /* set_declaration_stmt  */
+  YYSYMBOL_op0_stmt = 16,                  /* op0_stmt  */
+  YYSYMBOL_op1_stmt = 17,                  /* op1_stmt  */
+  YYSYMBOL_op2_stmt = 18,                  /* op2_stmt  */
+  YYSYMBOL_decl_stmt = 19,                 /* decl_stmt  */
   YYSYMBOL_elements = 20                   /* elements  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
@@ -532,8 +532,8 @@ static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "VAR", "CMD_SET",
   "CMD_NONE", "CMD_MONO", "CMD_BIN", "ASSIGN", "SMC", "OPENKEY",
-  "CLOSEKEY", "COLON", "$accept", "program", "statement", "cmd_none_stmt",
-  "cmd_mono_stmt", "cmd_bin_stmt", "set_declaration_stmt", "elements", YY_NULLPTR
+  "CLOSEKEY", "COLON", "$accept", "program", "statement", "op0_stmt",
+  "op1_stmt", "op2_stmt", "decl_stmt", "elements", YY_NULLPTR
 };
 
 static const char *
@@ -1092,59 +1092,59 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 8: /* cmd_none_stmt: CMD_NONE SMC  */
+  case 8: /* op0_stmt: CMD_NONE SMC  */
 #line 31 "parser.y"
                  {
         std::string cmd = gTokenStack.pop();
-        if      (cmd == "ShowSets") mostrarConjuntos();
-        else if (cmd == "Sets")     listarConjuntos();
+        if (cmd=="ShowSets") mostrarTodos();
+        else if(cmd=="Sets")  listarConjuntos();
     }
 #line 1103 "parser.tab.c"
     break;
 
-  case 9: /* cmd_mono_stmt: CMD_MONO VAR SMC  */
+  case 9: /* op1_stmt: CMD_MONO VAR SMC  */
 #line 39 "parser.y"
                      {
-        std::string name = gTokenStack.pop();
-        std::string cmd  = gTokenStack.pop();
-        if      (cmd == "Clear")    vaciarConjunto(name);
-        else if (cmd == "Delete")   eliminarConjunto(name);
-        else if (cmd == "ShowSet")  mostrarConjunto(name);
+        std::string t = gTokenStack.pop();
+        std::string cmd = gTokenStack.pop();
+        if(cmd=="Clear")    vaciarConjunto(t);
+        else if(cmd=="Delete") eliminarConjunto(t);
+        else if(cmd=="ShowSet") mostrarConjunto(t);
     }
 #line 1115 "parser.tab.c"
     break;
 
-  case 10: /* cmd_bin_stmt: VAR CMD_BIN VAR SMC  */
+  case 10: /* op2_stmt: VAR CMD_BIN VAR SMC  */
 #line 49 "parser.y"
                         {
-        std::string B   = gTokenStack.pop();
+        std::string B = gTokenStack.pop();
         std::string cmd = gTokenStack.pop();
-        std::string A   = gTokenStack.pop();
-        if      (cmd == "Union")        realizarUnion(A,B);
-        else if (cmd == "Intersection") realizarInterseccion(A,B);
-        else if (cmd == "Concat")       realizarConcat(A,B);
+        std::string A = gTokenStack.pop();
+        if(cmd=="Union")        hacerUnion(A,B);
+        else if(cmd=="Intersection") hacerInterseccion(A,B);
+        else if(cmd=="Concat")  hacerConcat(A,B);
     }
 #line 1128 "parser.tab.c"
     break;
 
-  case 11: /* cmd_bin_stmt: CMD_BIN VAR COLON VAR SMC  */
+  case 11: /* op2_stmt: CMD_BIN VAR COLON VAR SMC  */
 #line 57 "parser.y"
                               {
-        std::string B   = gTokenStack.pop();
-        std::string A   = gTokenStack.pop();
+        std::string B = gTokenStack.pop();
+        std::string A = gTokenStack.pop();
         std::string cmd = gTokenStack.pop();
-        if      (cmd == "Union")        realizarUnion(A,B);
-        else if (cmd == "Intersection") realizarInterseccion(A,B);
-        else if (cmd == "Concat")       realizarConcat(A,B);
+        if(cmd=="Union")        hacerUnion(A,B);
+        else if(cmd=="Intersection") hacerInterseccion(A,B);
+        else if(cmd=="Concat")  hacerConcat(A,B);
     }
 #line 1141 "parser.tab.c"
     break;
 
-  case 12: /* set_declaration_stmt: CMD_SET VAR ASSIGN OPENKEY elements CLOSEKEY SMC  */
+  case 12: /* decl_stmt: CMD_SET VAR ASSIGN OPENKEY elements CLOSEKEY SMC  */
 #line 68 "parser.y"
                                                      {
         std::vector<std::string> elems;
-        while (gTokenStack.size() > 1)
+        while(gTokenStack.size()>1)
             elems.push_back(gTokenStack.pop());
         std::string name = gTokenStack.pop();
         crearConjunto(name, elems);
@@ -1152,30 +1152,30 @@ yyreduce:
 #line 1153 "parser.tab.c"
     break;
 
-  case 13: /* set_declaration_stmt: CMD_SET VAR ASSIGN VAR CMD_BIN VAR SMC  */
+  case 13: /* decl_stmt: CMD_SET VAR ASSIGN VAR CMD_BIN VAR SMC  */
 #line 75 "parser.y"
                                            {
-        std::string B    = gTokenStack.pop();
-        std::string cmd  = gTokenStack.pop();
-        std::string A    = gTokenStack.pop();
+        std::string B = gTokenStack.pop();
+        std::string cmd = gTokenStack.pop();
+        std::string A = gTokenStack.pop();
         std::string name = gTokenStack.pop();
-        if      (cmd == "Union")        guardarResultadoUnion(name,A,B);
-        else if (cmd == "Intersection") guardarResultadoInterseccion(name,A,B);
-        else if (cmd == "Concat")       guardarResultadoConcat(name,A,B);
+        if(cmd=="Union")        guardarUnion(name,A,B);
+        else if(cmd=="Intersection") guardarInterseccion(name,A,B);
+        else if(cmd=="Concat")  guardarConcat(name,A,B);
     }
 #line 1167 "parser.tab.c"
     break;
 
-  case 14: /* set_declaration_stmt: CMD_SET VAR ASSIGN CMD_BIN VAR COLON VAR SMC  */
+  case 14: /* decl_stmt: CMD_SET VAR ASSIGN CMD_BIN VAR COLON VAR SMC  */
 #line 84 "parser.y"
                                                  {
-        std::string B    = gTokenStack.pop();
-        std::string A    = gTokenStack.pop();
-        std::string cmd  = gTokenStack.pop();
+        std::string B = gTokenStack.pop();
+        std::string A = gTokenStack.pop();
+        std::string cmd = gTokenStack.pop();
         std::string name = gTokenStack.pop();
-        if      (cmd == "Union")        guardarResultadoUnion(name,A,B);
-        else if (cmd == "Intersection") guardarResultadoInterseccion(name,A,B);
-        else if (cmd == "Concat")       guardarResultadoConcat(name,A,B);
+        if(cmd=="Union")        guardarUnion(name,A,B);
+        else if(cmd=="Intersection") guardarInterseccion(name,A,B);
+        else if(cmd=="Concat")  guardarConcat(name,A,B);
     }
 #line 1181 "parser.tab.c"
     break;

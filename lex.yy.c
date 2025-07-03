@@ -20,7 +20,6 @@
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
-#include <iostream>
 
 /* end standard C headers. */
 
@@ -843,12 +842,12 @@ case 16:
 /* rule 16 can match eol */
 YY_RULE_SETUP
 #line 25 "conjuntos.l"
-;  /* Ignora espacios y tabulaciones */
+;  /* ignora espacio */
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 26 "conjuntos.l"
-{ std::cerr << "Unknown token: " << yytext << std::endl; }
+{ std::cerr<<"Unknown: "<<yytext<<"\n"; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
